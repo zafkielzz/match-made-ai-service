@@ -1,0 +1,23 @@
+{
+  "cv": {
+    "id": "cv_backend_junior",
+    "targetRole": "Backend Developer",
+    "targetLevel": "JUNIOR",
+    "skills": {
+      "core": [
+        "Backend Development",
+        "REST API Design",
+        "Object-Oriented Programming",
+        "SQL Querying"
+      ],
+      "tools": ["Java", "Spring Boot", "PostgreSQL", "Docker", "Git"],
+      "domain": ["Web Services"],
+      "soft": ["Problem Solving"]
+    },
+    "experience": {
+      "totalMonths": 6,
+      "summary": "Backend intern building REST APIs with Spring Boot and PostgreSQL."
+    },
+    "cvTextForMatching": "Junior Backend Developer. Built REST APIs using Java and Spring Boot, worked with PostgreSQL, Docker, and Git. Internship experience."
+  }
+}

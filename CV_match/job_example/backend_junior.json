@@ -1,0 +1,24 @@
+{
+  "id": "job_backend_junior",
+  "title": "Junior Backend Developer (Java / Spring Boot)",
+  "jobLevel": "JUNIOR",
+  "location": "Ho Chi Minh City",
+  "extractedSkills": {
+    "core": [
+      "Backend Development",
+      "REST API Design",
+      "Object-Oriented Programming",
+      "SQL Querying"
+    ],
+    "tools": ["Java", "Spring Boot", "PostgreSQL", "Docker", "Git"],
+    "domain": ["Web Services"],
+    "soft": ["Problem Solving", "Team Collaboration"]
+  },
+  "experience": {
+    "min": 0,
+    "max": 2,
+    "raw": "0–2 years or strong internship/projects",
+    "senioritySignals": ["junior", "internship accepted"]
+  },
+  "jobTextForMatching": "Junior Backend Developer using Java and Spring Boot. Build REST APIs, work with PostgreSQL, Docker, and Git. Suitable for junior or strong internship background."
+}

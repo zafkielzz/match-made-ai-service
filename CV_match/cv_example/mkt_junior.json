@@ -1,0 +1,18 @@
+{
+  "cv": {
+    "id": "cv_marketing_junior",
+    "targetRole": "Marketing Executive",
+    "targetLevel": "JUNIOR",
+    "skills": {
+      "core": ["Social Media Management", "Content Creation"],
+      "tools": ["Facebook", "Instagram", "TikTok", "CapCut"],
+      "domain": ["Digital Marketing"],
+      "soft": ["Creativity"]
+    },
+    "experience": {
+      "totalMonths": 12,
+      "summary": "Managed social media content for student events."
+    },
+    "cvTextForMatching": "Junior Marketing executive managing social media content on Facebook, Instagram, and TikTok."
+  }
+}

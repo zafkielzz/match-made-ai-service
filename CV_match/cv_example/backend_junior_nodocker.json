@@ -1,0 +1,16 @@
+{
+  "id": "cv_backend_no_docker",
+  "targetRole": "Backend Developer",
+  "targetLevel": "JUNIOR",
+  "skills": {
+    "core": ["Backend Development", "REST API Design", "SQL"],
+    "tools": ["Java", "Spring Boot", "PostgreSQL", "Git"],
+    "domain": ["Web Services"],
+    "soft": ["Problem Solving"]
+  },
+  "experience": {
+    "totalMonths": 12,
+    "summary": "Junior backend developer with Java and Spring Boot experience."
+  },
+  "cvTextForMatching": "Junior Backend Developer with 1 year experience using Java, Spring Boot, PostgreSQL, and Git. No Docker experience."
+}

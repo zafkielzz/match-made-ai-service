@@ -1,0 +1,284 @@
+{
+  "jobs": [
+    {
+      "id": "job_backend_intern",
+      "title": "Backend Developer Intern",
+      "jobLevel": "INTERN",
+      "location": "Ho Chi Minh City",
+      "extractedSkills": {
+        "core": [
+          "Backend Development",
+          "REST API Basics"
+        ],
+        "tools": [
+          "Java",
+          "Spring Boot",
+          "PostgreSQL"
+        ],
+        "domain": [
+          "Web Services"
+        ],
+        "soft": [
+          "Learning Ability"
+        ]
+      },
+      "experience": {
+        "min": 0,
+        "max": 0,
+        "raw": "Internship position – no prior experience required",
+        "senioritySignals": [
+          "intern",
+          "student"
+        ]
+      },
+      "jobTextForMatching": "Backend Intern position using Java and Spring Boot. No prior experience required. Suitable for students."
+    },
+    {
+      "id": "job_backend_java_english",
+      "title": "Backend Developer (Java) – English Required",
+      "jobLevel": "JUNIOR",
+      "location": "Ho Chi Minh City",
+      "extractedSkills": {
+        "core": [
+          "Backend Development",
+          "REST API Design"
+        ],
+        "tools": [
+          "Java",
+          "Spring Boot",
+          "PostgreSQL"
+        ],
+        "domain": [
+          "International Product"
+        ],
+        "soft": [
+          "Communication"
+        ]
+      },
+      "experience": {
+        "min": 1,
+        "max": 3,
+        "raw": "1–3 years, English communication required",
+        "senioritySignals": [
+          "english-required"
+        ]
+      },
+      "jobTextForMatching": "Backend Developer using Java and Spring Boot. Must communicate well in English and work with international teams."
+    },
+    {
+      "id": "job_backend_junior",
+      "title": "Junior Backend Developer (Java / Spring Boot)",
+      "jobLevel": "JUNIOR",
+      "location": "Ho Chi Minh City",
+      "extractedSkills": {
+        "core": [
+          "Backend Development",
+          "REST API Design",
+          "Object-Oriented Programming",
+          "SQL Querying"
+        ],
+        "tools": [
+          "Java",
+          "Spring Boot",
+          "PostgreSQL",
+          "Docker",
+          "Git"
+        ],
+        "domain": [
+          "Web Services"
+        ],
+        "soft": [
+          "Problem Solving",
+          "Team Collaboration"
+        ]
+      },
+      "experience": {
+        "min": 0,
+        "max": 2,
+        "raw": "0–2 years or strong internship/projects",
+        "senioritySignals": [
+          "junior",
+          "internship accepted"
+        ]
+      },
+      "jobTextForMatching": "Junior Backend Developer using Java and Spring Boot. Build REST APIs, work with PostgreSQL, Docker, and Git. Suitable for junior or strong internship background."
+    },
+    {
+      "id": "job_backend_node",
+      "title": "Junior Backend Developer (Node.js)",
+      "jobLevel": "JUNIOR",
+      "location": "Ho Chi Minh City",
+      "extractedSkills": {
+        "core": [
+          "Backend Development",
+          "REST API Design"
+        ],
+        "tools": [
+          "Node.js",
+          "Express",
+          "MongoDB",
+          "Git"
+        ],
+        "domain": [
+          "Web Services"
+        ],
+        "soft": [
+          "Problem Solving"
+        ]
+      },
+      "experience": {
+        "min": 0,
+        "max": 2,
+        "raw": "0–2 years or fresh graduate",
+        "senioritySignals": [
+          "junior",
+          "fresher-friendly"
+        ]
+      },
+      "jobTextForMatching": "Junior Backend Developer working with Node.js and Express to build REST APIs. Suitable for fresh graduates or junior candidates."
+    },
+    {
+      "id": "job_backend_senior",
+      "title": "Senior Backend Engineer (Java / Microservices)",
+      "jobLevel": "SENIOR",
+      "location": "Ho Chi Minh City",
+      "extractedSkills": {
+        "core": [
+          "Backend Development",
+          "Microservices Architecture",
+          "System Design",
+          "Performance Optimization"
+        ],
+        "tools": [
+          "Java",
+          "Spring Boot",
+          "Kafka",
+          "Docker",
+          "Kubernetes",
+          "AWS"
+        ],
+        "domain": [
+          "Distributed Systems"
+        ],
+        "soft": [
+          "Leadership",
+          "Mentoring"
+        ]
+      },
+      "experience": {
+        "min": 5,
+        "max": null,
+        "raw": "5+ years experience",
+        "senioritySignals": [
+          "senior",
+          "lead",
+          "architecture"
+        ]
+      },
+      "jobTextForMatching": "Senior Backend Engineer with strong experience in Java microservices, Kafka, Kubernetes, and AWS. Requires 5+ years experience and system design skills."
+    },
+    {
+      "id": "job_data_engineer",
+      "title": "Junior Data Engineer",
+      "jobLevel": "JUNIOR",
+      "location": "Ho Chi Minh City",
+      "extractedSkills": {
+        "core": [
+          "Data Engineering",
+          "ETL Pipelines",
+          "SQL"
+        ],
+        "tools": [
+          "Python",
+          "Airflow",
+          "PostgreSQL"
+        ],
+        "domain": [
+          "Data Platform"
+        ],
+        "soft": [
+          "Analytical Thinking"
+        ]
+      },
+      "experience": {
+        "min": 1,
+        "max": 3,
+        "raw": "1–3 years experience in data engineering",
+        "senioritySignals": [
+          "data",
+          "pipeline"
+        ]
+      },
+      "jobTextForMatching": "Junior Data Engineer building ETL pipelines with Python and Airflow. Strong SQL required."
+    },
+    {
+      "id": "job_frontend_react",
+      "title": "Frontend Developer (React / TypeScript)",
+      "jobLevel": "JUNIOR",
+      "location": "Ho Chi Minh City",
+      "extractedSkills": {
+        "core": [
+          "Frontend Development",
+          "UI Development"
+        ],
+        "tools": [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "HTML",
+          "CSS"
+        ],
+        "domain": [
+          "Web UI"
+        ],
+        "soft": [
+          "Creativity"
+        ]
+      },
+      "experience": {
+        "min": 0,
+        "max": 2,
+        "raw": "Junior level",
+        "senioritySignals": [
+          "junior"
+        ]
+      },
+      "jobTextForMatching": "Frontend Developer working with React and TypeScript to build modern web user interfaces."
+    },
+    {
+      "id": "job_marketing_social",
+      "title": "Social Media Executive",
+      "jobLevel": "JUNIOR",
+      "location": "Ho Chi Minh City",
+      "extractedSkills": {
+        "core": [
+          "Social Media Management",
+          "Content Planning",
+          "Performance Analytics"
+        ],
+        "tools": [
+          "Facebook",
+          "Instagram",
+          "TikTok",
+          "CapCut"
+        ],
+        "domain": [
+          "Digital Marketing"
+        ],
+        "soft": [
+          "Creativity",
+          "Communication"
+        ]
+      },
+      "experience": {
+        "min": 1,
+        "max": 3,
+        "raw": "1–3 years experience",
+        "senioritySignals": [
+          "marketing"
+        ]
+      },
+      "jobTextForMatching": "Social Media Executive managing content and performance across Facebook, Instagram, and TikTok."
+    }
+  ]
+}

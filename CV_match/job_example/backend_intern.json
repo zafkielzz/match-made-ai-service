@@ -1,0 +1,19 @@
+{
+  "id": "job_backend_intern",
+  "title": "Backend Developer Intern",
+  "jobLevel": "INTERN",
+  "location": "Ho Chi Minh City",
+  "extractedSkills": {
+    "core": ["Backend Development", "REST API Basics"],
+    "tools": ["Java", "Spring Boot", "PostgreSQL"],
+    "domain": ["Web Services"],
+    "soft": ["Learning Ability"]
+  },
+  "experience": {
+    "min": 0,
+    "max": 0,
+    "raw": "Internship position – no prior experience required",
+    "senioritySignals": ["intern", "student"]
+  },
+  "jobTextForMatching": "Backend Intern position using Java and Spring Boot. No prior experience required. Suitable for students."
+}
