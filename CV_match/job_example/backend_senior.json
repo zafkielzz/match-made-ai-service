@@ -1,0 +1,24 @@
+{
+  "id": "job_backend_senior",
+  "title": "Senior Backend Engineer (Java / Microservices)",
+  "jobLevel": "SENIOR",
+  "location": "Ho Chi Minh City",
+  "extractedSkills": {
+    "core": [
+      "Backend Development",
+      "Microservices Architecture",
+      "System Design",
+      "Performance Optimization"
+    ],
+    "tools": ["Java", "Spring Boot", "Kafka", "Docker", "Kubernetes", "AWS"],
+    "domain": ["Distributed Systems"],
+    "soft": ["Leadership", "Mentoring"]
+  },
+  "experience": {
+    "min": 5,
+    "max": null,
+    "raw": "5+ years experience",
+    "senioritySignals": ["senior", "lead", "architecture"]
+  },
+  "jobTextForMatching": "Senior Backend Engineer with strong experience in Java microservices, Kafka, Kubernetes, and AWS. Requires 5+ years experience and system design skills."
+}
