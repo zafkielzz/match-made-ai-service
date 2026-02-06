@@ -1,17 +1,26 @@
 from fastapi import FastAPI, HTTPException
 import numpy as np
 import faiss  # only for normalize_L2; no indexing here
-from app.job_parse import parse_job_text, ParseResult
 from .schemas import (
     HealthResponse, EmbedRequest, EmbedResponse,
     RerankRequest, RerankResponse,
-    PairRerankRequest, PairRerankResponse, ParseJobRequest, ParseJobResponse
+    PairRerankRequest, PairRerankResponse
 )
+from contextlib import asynccontextmanager
+from dotenv import load_dotenv
+
 from .config import DEVICE, USE_FP16, EMBED_MODEL_NAME, RERANK_MODEL_NAME, MAX_LENGTH, EMBED_BATCH_SIZE, RERANK_BATCH_SIZE
-from .models import get_embedder, get_reranker
+from .models import get_embedder, get_reranker, warmup_models, log_runtime_info
+load_dotenv() 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # startup
+    log_runtime_info()
+    warmup_models()
+    yield
+    # shutdown (nếu cần cleanup thì thêm ở đây)
 
-app = FastAPI(title="AI Inference Service (Embedding + Rerank+ Job Parser)",version="1.0.0")
-
+app = FastAPI(lifespan=lifespan)
 @app.get("/health", response_model=HealthResponse)
 def health():
     return HealthResponse(
@@ -70,20 +79,3 @@ def rerank_pairs(req: PairRerankRequest):
         return PairRerankResponse(scores=[float(s) for s in scores])
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid request or rerank failed: {e}")
-@app.post("/jobs/parse", response_model=ParseJobResponse)
-def parse_job(req: ParseJobRequest):
-    try:
-        result: ParseResult = parse_job_text(req.rawText, req.defaults)
-
-    
-
-        return {
-            "detectedSource": result.detected_source,
-            "suggested": result.suggested,
-            "meta": {
-                "confidence": result.confidence,
-                "warnings": result.warnings,
-            }}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to parse job: {e}")
-    

@@ -1,7 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import Any, Dict, List, Optional
 
-from .job_parse import ParseDefaults
 
 class HealthResponse(BaseModel):
     status: str
@@ -32,12 +31,3 @@ class PairRerankRequest(BaseModel):
 
 class PairRerankResponse(BaseModel):
     scores: List[float]
-class ParseJobRequest(BaseModel):
-    rawText: str = Field(min_length=10)
-    defaults: ParseDefaults = Field(default_factory=ParseDefaults)
-
-
-class ParseJobResponse(BaseModel):
-    detectedSource: str
-    suggested: Dict[str, Any]
-    meta: Dict[str, Any]  # confidence, warnings
