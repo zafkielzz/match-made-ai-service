@@ -4,3 +4,7 @@ python-multipart
 FlagEmbedding
 numpy
 pydantic
+faiss-cpu
+python-dotenv
+torch
+psycopg2-binary

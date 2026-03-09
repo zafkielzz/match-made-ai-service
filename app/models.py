@@ -58,6 +58,37 @@ def get_embedder() -> BGEM3FlagModel:
     return _embedder
 
 
+def format_sparse_vector(lexical_weights: dict, threshold: float = 0.01) -> dict:
+    """
+    Chuyển đổi lexical weights từ model.encode() thành định dạng sparse vector.
+    
+    Args:
+        lexical_weights: Dictionary {token_id: weight} từ model
+        threshold: Ngưỡng để loại bỏ các token có weight thấp (default: 0.01)
+    
+    Returns:
+        Dictionary với format: {"indices": [int, ...], "values": [float, ...]}
+        Indices được sắp xếp theo thứ tự tăng dần
+    """
+    if not lexical_weights:
+        return {"indices": [], "values": []}
+    
+    # Filter tokens có weight > threshold
+    filtered_items = [(token_id, weight) for token_id, weight in lexical_weights.items() 
+                      if weight > threshold]
+    
+    if not filtered_items:
+        return {"indices": [], "values": []}
+    
+    # Sort theo token_id (indices) tăng dần
+    filtered_items.sort(key=lambda x: x[0])
+    
+    indices = [int(token_id) for token_id, _ in filtered_items]
+    values = [float(weight) for _, weight in filtered_items]
+    
+    return {"indices": indices, "values": values}
+
+
 def get_reranker() -> FlagReranker:
     global _reranker
     if _reranker is None:
@@ -78,7 +109,7 @@ def warmup_models() -> None:
     rr = get_reranker()
 
     # Small warmup inputs
-    _ = emb.encode(["warmup"], batch_size=1)
+    _ = emb.encode(["warmup"], batch_size=1, return_dense=True, return_sparse=False)
     _ = rr.compute_score([("warmup query", "warmup doc")], normalize=True)
 
 
@@ -86,6 +117,9 @@ def embed_texts(texts: Sequence[str]) -> List[List[float]]:
     """
     Returns dense vectors for a batch of texts.
     Uses batching for speed.
+    
+    NOTE: This function is kept for backward compatibility with embedding_pipeline.py
+    For new code, use embed_texts_hybrid() to get both dense and sparse vectors.
     """
     emb = get_embedder()
     cleaned = [cap_text(t) for t in texts]
@@ -95,17 +129,95 @@ def embed_texts(texts: Sequence[str]) -> List[List[float]]:
         cleaned,
         batch_size=EMBED_BATCH_SIZE,
         max_length=MAX_LENGTH,
+        return_dense=True,
+        return_sparse=False,
     )
 
     # Be defensive across versions
     if isinstance(out, dict):
-        vecs = out.get("dense_vecs") or out.get("dense_embeddings") or out.get("embeddings")
+        vecs = out.get("dense_vecs")
+        if vecs is None:
+            vecs = out.get("dense_embeddings")
+        if vecs is None:
+            vecs = out.get("embeddings")
         if vecs is None:
             raise ValueError(f"Unexpected embed output keys: {list(out.keys())}")
         return vecs.tolist() if hasattr(vecs, "tolist") else list(vecs)
 
     # Some versions may directly return vectors
     return out.tolist() if hasattr(out, "tolist") else list(out)
+
+
+def embed_texts_hybrid(texts: Sequence[str]) -> List[dict]:
+    """
+    Returns both dense and sparse vectors for a batch of texts.
+    Supports Hybrid Search (Dense + Sparse).
+    
+    Args:
+        texts: List of input texts
+    
+    Returns:
+        List of dicts, each containing:
+        {
+            "dense_vector": [float, ...],  # 1024-dim dense embedding
+            "sparse_vector": {             # Sparse lexical weights
+                "indices": [int, ...],
+                "values": [float, ...]
+            }
+        }
+    """
+    emb = get_embedder()
+    cleaned = [cap_text(t) for t in texts]
+
+    # Encode with both dense and sparse
+    out = emb.encode(
+        cleaned,
+        batch_size=EMBED_BATCH_SIZE,
+        max_length=MAX_LENGTH,
+        return_dense=True,
+        return_sparse=True,
+    )
+
+    if not isinstance(out, dict):
+        raise ValueError(f"Expected dict output from model.encode, got {type(out)}")
+
+    # Extract dense vectors
+    dense_vecs = out.get("dense_vecs")
+    if dense_vecs is None:
+        dense_vecs = out.get("dense_embeddings")
+    if dense_vecs is None:
+        dense_vecs = out.get("embeddings")
+    if dense_vecs is None:
+        raise ValueError(f"Cannot find dense vectors in output keys: {list(out.keys())}")
+
+    # Extract sparse vectors (lexical weights)
+    lexical_weights = out.get("lexical_weights")
+    if lexical_weights is None:
+        lexical_weights = out.get("sparse_vecs")
+    if lexical_weights is None:
+        raise ValueError(f"Cannot find sparse vectors in output keys: {list(out.keys())}")
+
+    # Convert to list if needed
+    dense_list = dense_vecs.tolist() if hasattr(dense_vecs, "tolist") else list(dense_vecs)
+
+    # Build result
+    results = []
+    for i, dense_vec in enumerate(dense_list):
+        # lexical_weights is typically a dict per text or a list of dicts
+        if isinstance(lexical_weights, list):
+            lex_weights = lexical_weights[i] if i < len(lexical_weights) else {}
+        else:
+            # If it's a single dict (batch size 1), use it directly
+            lex_weights = lexical_weights if len(cleaned) == 1 else {}
+
+        sparse_vec = format_sparse_vector(lex_weights)
+        
+        results.append({
+            "dense_vector": dense_vec,
+            "sparse_vector": sparse_vec
+        })
+
+    return results
 
 
 def rerank(
